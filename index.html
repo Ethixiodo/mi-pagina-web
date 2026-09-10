@@ -2,20 +2,15 @@
 <html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Marcelo Iván Soto Ojeda | Ingeniero en Informática - Portafolio</title>
-  <meta name="description" content="Portafolio profesional de Marcelo Iván Soto Ojeda, Ingeniero en Informática de INACAP (2023). Especialista en Soporte TI, Infraestructura, Redes, Desarrollo Web Full Stack y Soluciones Cloud." />
+  <meta name="description" content="Portafolio profesional de Marcelo Iván Soto Ojeda, Ingeniero en Informática de INACAP (2022). Especialista en Soporte TI, Infraestructura, Redes, Desarrollo Web Full Stack y Soluciones Cloud." />
   
-  <!-- Favicon SVG en base64 embebido para ser 100% autocontenido -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>" />
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Font Lucide Icons vía CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Google Fonts: Inter & JetBrains Mono para look técnico y limpio -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -31,21 +26,15 @@
           },
           colors: {
             brand: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
               400: '#38bdf8',
               500: '#0ea5e9',
               600: '#0284c7',
-              700: '#0369a1',
             },
             tech: {
-              steel: '#64748b',
-              navy: '#0f172a',
               dark: '#090d16',
               surface: '#111827',
               card: '#161f30',
               border: '#1e293b',
-              accent: '#38bdf8'
             }
           }
         }
@@ -54,101 +43,376 @@
   </script>
 
   <style>
-    /* Estilos personalizados sutiles para efecto de gradientes y scrollbar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       background-color: #090d16;
       color: #e2e8f0;
       font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    ::selection {
-      background-color: #0284c7;
-      color: #ffffff;
-    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090d16; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    ::selection { background-color: #0ea5e9; color: #ffffff; }
 
-    /* Grid de fondo sutil tipo ingeniería / blueprint */
     .bg-grid-pattern {
       background-size: 36px 36px;
       background-image: 
         linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     }
-
-    /* Glows decorativos */
     .radial-glow {
-      background: radial-gradient(circle 500px at 50% 10%, rgba(14, 165, 233, 0.15), transparent 70%);
+      background: radial-gradient(circle 500px at 50% 10%, rgba(14, 165, 233, 0.12), transparent 70%);
     }
 
-    /* Scrollbar estilizada */
-    ::-webkit-scrollbar {
-      width: 8px;
+    .card {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      transition: all 0.25s ease;
     }
-    ::-webkit-scrollbar-track {
-      background: #090d16;
+    .card:hover {
+      border-color: rgba(14, 165, 233, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     }
-    ::-webkit-scrollbar-thumb {
+
+    .badge-custom {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .cert-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      background: #1a2436;
+      border: 1px solid #1e293b;
+      color: #94a3b8;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      min-height: 32px;
+    }
+    .cert-btn:hover {
+      border-color: #0ea5e9;
+      color: #0ea5e9;
       background: #1e293b;
-      border-radius: 4px;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #334155;
+
+    /* ========== BARRA FLOTANTE REDES SOCIALES ========== */
+    .social-float {
+      position: fixed;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
+    .social-float a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #111827;
+      border: 1px solid #1e293b;
+      color: #94a3b8;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    .social-float a:hover {
+      border-color: #0ea5e9;
+      color: #0ea5e9;
+      transform: scale(1.12);
+      box-shadow: 0 0 25px rgba(14, 165, 233, 0.25);
+      background: #1a2436;
+    }
+    .social-float a svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .social-float .whatsapp:hover {
+      border-color: #25d366;
+      color: #25d366;
+    }
+    .social-float .email:hover {
+      border-color: #f43f5e;
+      color: #f43f5e;
+    }
+    .social-float .instagram:hover {
+      border-color: #e4405f;
+      color: #e4405f;
+    }
+    .social-float .linkedin:hover {
+      border-color: #0a66c2;
+      color: #0a66c2;
+    }
+
+    @media (max-width: 768px) {
+      .social-float { right: 10px; gap: 8px; }
+      .social-float a { width: 38px; height: 38px; }
+      .social-float a svg { width: 17px; height: 17px; }
+    }
+
+    @media (max-width: 480px) {
+      .social-float { right: 6px; gap: 6px; }
+      .social-float a { width: 34px; height: 34px; }
+      .social-float a svg { width: 15px; height: 15px; }
+    }
+
+    .stat-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .gallery-img { transition: all 0.4s ease; }
+    .gallery-img:hover { transform: scale(1.03); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); }
+
+    .timeline-dot { transition: all 0.3s ease; }
+    .timeline-dot:hover { transform: scale(1.3); box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
+
+    .form-input {
+      background: #0d1320;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      color: #e2e8f0;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 44px;
+      font-family: 'Inter', sans-serif;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+    .form-input::placeholder { color: #475569; }
+    .form-input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    select.form-input {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    textarea.form-input { min-height: 120px; resize: vertical; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #6366f1);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 1.8rem;
+      border-radius: 10px;
+      border: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(14, 165, 233, 0.35);
+    }
+    .btn-primary:disabled { opacity: 0.6; transform: none; cursor: not-allowed; }
+
+    .toast {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-left: 3px solid #0ea5e9;
+      border-radius: 10px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      color: #e2e8f0;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 90vw;
+    }
+    @media (min-width: 640px) { .toast { max-width: 380px; } }
+
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2.25rem !important; }
+      .cta-group {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .cta-group a,
+      .cta-group button {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 1.75rem !important; }
+    }
+
+    .lang-btn { min-height: 32px; min-width: 32px; }
+    .lang-btn.active {
+      background-color: #0ea5e9;
+      color: white;
+      border-color: #0ea5e9;
+    }
+    .lang-btn:not(.active):hover {
+      background-color: #1e293b;
+      border-color: #38bdf8;
+    }
+
+    
   </style>
 </head>
-<body class="bg-tech-dark text-slate-200 antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
+<body>
 
-  <!-- Fondo técnico de rejilla con glow sutil -->
   <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
   <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] radial-glow pointer-events-none z-0"></div>
 
-  <!-- ==================== BARRA DE NAVEGACIÓN (HEADER) ==================== -->
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-tech-dark/85 border-b border-tech-border/80 transition-all duration-300">
+  <!-- ========== BARRA FLOTANTE REDES SOCIALES (SVG INLINE) ========== -->
+  <div class="social-float">
+    
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/marcelo-ivan-soto-ojeda-855b90198" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="LinkedIn" 
+       title="LinkedIn"
+       class="linkedin">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    </a>
+
+    <!-- GitHub -->
+    <a href="https://github.com/Ethixiodo/" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="GitHub" 
+       title="GitHub">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/tu_usuario/" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Instagram" 
+       title="Instagram"
+       class="instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+      </svg>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:ing.marcelosoto@gmail.com" 
+       aria-label="Email" 
+       title="Correo electrónico" 
+       class="email">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+        <path d="m22 7-10 5L2 7"></path>
+      </svg>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/56985078857?text=Hola%20Marcelo,%20me%20gustaría%20contactarte%20para%20hablar%20sobre%20una%20oportunidad%20de%20trabajo." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="WhatsApp" 
+       title="WhatsApp" 
+       class="whatsapp">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+    </a>
+
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#090d16]/85 border-b border-[#1e293b]/80 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <!-- Logotipo / Identificador -->
-      <a href="#hero" class="group flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-brand-600 to-sky-400 p-[1px] shadow-lg shadow-brand-500/20">
-          <div class="w-full h-full bg-tech-dark rounded-[7px] flex items-center justify-center font-mono font-bold text-brand-400 text-sm group-hover:bg-transparent group-hover:text-white transition-all">
+      
+      <a href="#hero" class="group flex items-center gap-2 sm:gap-3 flex-shrink-0">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-tr from-[#0ea5e9] to-sky-400 p-[1px] shadow-lg shadow-[#0ea5e9]/20">
+          <div class="w-full h-full bg-[#090d16] rounded-[7px] flex items-center justify-center font-mono font-bold text-[#38bdf8] text-xs sm:text-sm group-hover:bg-transparent group-hover:text-white transition-all">
             MS
           </div>
         </div>
         <div class="flex flex-col">
-          <span class="font-bold text-sm tracking-tight text-white group-hover:text-brand-400 transition-colors">Marcelo Soto</span>
-          <span class="text-[11px] text-slate-400 font-mono">Ing. en Informática</span>
+          <span class="font-bold text-sm tracking-tight text-white group-hover:text-[#0ea5e9] transition-colors">Marcelo Soto</span>
+          <span class="text-[10px] text-[#64748b] font-mono">Ing. en Informática</span>
         </div>
       </a>
 
-      <!-- Navegación de Escritorio -->
-      <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-300">
-        <a href="#about" class="px-3 py-1.5 rounded-md hover:text-brand-400 hover:bg-slate-800/60 transition-all">Sobre Mí</a>
-        <a href="#services" class="px-3 py-1.5 rounded-md hover:text-brand-400 hover:bg-slate-800/60 transition-all">Especialidades</a>
-        <a href="#projects" class="px-3 py-1.5 rounded-md hover:text-brand-400 hover:bg-slate-800/60 transition-all">Proyectos</a>
-        <a href="#skills" class="px-3 py-1.5 rounded-md hover:text-brand-400 hover:bg-slate-800/60 transition-all">Stack Técnico</a>
-        <a href="#contact" class="px-3 py-1.5 rounded-md hover:text-brand-400 hover:bg-slate-800/60 transition-all">Contacto</a>
+      <nav class="hidden md:flex items-center gap-0.5 lg:gap-1 text-sm font-medium text-[#94a3b8]">
+        <a href="#about" class="px-2 lg:px-3 py-1.5 rounded-md hover:text-[#0ea5e9] hover:bg-[#1e293b]/60 transition-all">Sobre Mí</a>
+        <a href="#services" class="px-2 lg:px-3 py-1.5 rounded-md hover:text-[#0ea5e9] hover:bg-[#1e293b]/60 transition-all">Especialidades</a>
+        <a href="#projects" class="px-2 lg:px-3 py-1.5 rounded-md hover:text-[#0ea5e9] hover:bg-[#1e293b]/60 transition-all">Proyectos</a>
+        <a href="#certifications" class="px-2 lg:px-3 py-1.5 rounded-md hover:text-[#0ea5e9] hover:bg-[#1e293b]/60 transition-all">Certificaciones</a>
+        <a href="#skills" class="px-2 lg:px-3 py-1.5 rounded-md hover:text-[#0ea5e9] hover:bg-[#1e293b]/60 transition-all">Stack</a>
+        <a href="#contact" class="px-2 lg:px-3 py-1.5 rounded-md hover:text-[#0ea5e9] hover:bg-[#1e293b]/60 transition-all">Contacto</a>
       </nav>
 
-      <!-- Botón de Acción Header -->
-      <div class="hidden md:flex items-center gap-3">
-        <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider bg-brand-500/10 text-brand-400 border border-brand-500/30 hover:bg-brand-500 hover:text-white transition-all duration-200">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="flex items-center gap-1 bg-[#1e293b]/60 rounded-lg p-1 border border-[#1e293b]">
+          <button id="lang-es" class="lang-btn active px-2 py-0.5 rounded-md text-[10px] font-mono transition-all text-white bg-[#0ea5e9] border border-[#0ea5e9]">ES</button>
+          <button id="lang-en" class="lang-btn px-2 py-0.5 rounded-md text-[10px] font-mono transition-all text-[#64748b] border border-transparent hover:text-white">EN</button>
+        </div>
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-[#0ea5e9]/10 text-[#0ea5e9] border border-[#0ea5e9]/30 hover:bg-[#0ea5e9] hover:text-white transition-all duration-200 min-h-[36px]">
           <i data-lucide="mail" class="w-3.5 h-3.5"></i>
           <span>Contáctame</span>
         </a>
+        <button id="mobile-menu-btn" type="button" aria-label="Abrir Menú" class="md:hidden p-2 rounded-lg bg-[#1e293b]/70 border border-[#1e293b]/60 text-[#94a3b8] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] min-h-[40px] min-w-[40px]">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
       </div>
 
-      <!-- Botón Menú Móvil -->
-      <button id="mobile-menu-btn" type="button" aria-label="Abrir Menú" class="md:hidden p-2 rounded-lg bg-slate-800/70 border border-slate-700/60 text-slate-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
-        <i data-lucide="menu" id="menu-icon" class="w-5 h-5"></i>
-      </button>
     </div>
 
-    <!-- Menú Desplegable Móvil -->
-    <div id="mobile-menu" class="hidden md:hidden border-b border-tech-border bg-tech-surface/95 backdrop-blur-xl px-4 pt-3 pb-5 space-y-2">
-      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-slate-800 hover:text-brand-400 transition-colors">Sobre Mí</a>
-      <a href="#services" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-slate-800 hover:text-brand-400 transition-colors">Especialidades</a>
-      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-slate-800 hover:text-brand-400 transition-colors">Proyectos</a>
-      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-slate-800 hover:text-brand-400 transition-colors">Stack Técnico</a>
-      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm text-slate-200 hover:bg-slate-800 hover:text-brand-400 transition-colors">Contacto</a>
-      <div class="pt-2">
-        <a href="#contact" class="mobile-nav-link flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider bg-brand-500 text-white hover:bg-brand-600 transition-colors">
+    <div id="mobile-menu" class="hidden md:hidden border-t border-[#1e293b] bg-[#090d16]/95 backdrop-blur-xl px-4 pt-3 pb-5 space-y-1">
+      <a href="#about" class="mobile-nav-link block px-3 py-3 rounded-lg text-sm text-[#cbd5e1] hover:bg-[#1e293b] hover:text-[#0ea5e9] transition-colors">Sobre Mí</a>
+      <a href="#services" class="mobile-nav-link block px-3 py-3 rounded-lg text-sm text-[#cbd5e1] hover:bg-[#1e293b] hover:text-[#0ea5e9] transition-colors">Especialidades</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-3 rounded-lg text-sm text-[#cbd5e1] hover:bg-[#1e293b] hover:text-[#0ea5e9] transition-colors">Proyectos</a>
+      <a href="#certifications" class="mobile-nav-link block px-3 py-3 rounded-lg text-sm text-[#cbd5e1] hover:bg-[#1e293b] hover:text-[#0ea5e9] transition-colors">Certificaciones</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-3 rounded-lg text-sm text-[#cbd5e1] hover:bg-[#1e293b] hover:text-[#0ea5e9] transition-colors">Stack Técnico</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-3 rounded-lg text-sm text-[#cbd5e1] hover:bg-[#1e293b] hover:text-[#0ea5e9] transition-colors">Contacto</a>
+      <div class="pt-3">
+        <a href="#contact" class="mobile-nav-link flex items-center justify-center gap-2 w-full py-3.5 rounded-lg text-sm font-semibold uppercase tracking-wider bg-[#0ea5e9] text-white hover:bg-[#0284c7] transition-colors min-h-[48px]">
           <i data-lucide="mail" class="w-4 h-4"></i>
           <span>Iniciar Conversación</span>
         </a>
@@ -156,139 +420,115 @@
     </div>
   </header>
 
-  <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
   <main class="relative z-10 flex-grow">
 
-    <!-- ==================== HERO SECTION ==================== -->
-    <section id="hero" class="relative pt-16 pb-20 md:pt-28 md:pb-32 overflow-hidden border-b border-tech-border/50">
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="relative pt-16 pb-16 md:pt-28 md:pb-24 overflow-hidden border-b border-[#1e293b]/50">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          <!-- Columna Texto / Presentación -->
-          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
             
-            <!-- Badge de Estado Profesional -->
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-xs text-slate-300">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1e293b]/80 border border-[#1e293b]/80 text-xs text-[#94a3b8] mx-auto lg:mx-0">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="font-mono">Disponible para proyectos y oportunidades TI</span>
+              <span class="font-mono text-[10px] sm:text-xs">Disponible para proyectos y oportunidades TI</span>
             </div>
 
-            <!-- Título y Nombre Principal -->
-            <div class="space-y-2">
-              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                Marcelo Iván <br />
-                <span class="bg-gradient-to-r from-brand-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
+            <div class="space-y-1">
+              <h1 class="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                <span>Marcelo Iván</span>
+                <span class="block bg-gradient-to-r from-[#38bdf8] via-sky-300 to-indigo-400 bg-clip-text text-transparent">
                   Soto Ojeda
                 </span>
               </h1>
-              <p class="text-base sm:text-lg md:text-xl font-medium text-slate-400 font-mono">
-                Ingeniero en Informática <span class="text-brand-400 font-semibold">• INACAP (2023)</span>
+              <p class="text-base sm:text-lg md:text-xl font-medium text-[#94a3b8] font-mono">
+                Ingeniero en Informática <span class="text-[#0ea5e9] font-semibold">• INACAP (2022)</span>
               </p>
             </div>
 
-            <!-- Propuesta de Valor -->
-            <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Combino la solidez técnica de la <strong class="text-white font-semibold">infraestructura y el soporte TI</strong> con la agilidad del <strong class="text-white font-semibold">desarrollo de software y aplicaciones web</strong>. Construyo plataformas estables, seguras y de alto rendimiento orientadas a optimizar operaciones y resolver necesidades reales de negocio.
+            <p class="text-[#cbd5e1] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Combino la solidez técnica de la <strong class="text-white font-semibold">infraestructura y el soporte TI</strong> con la agilidad del <strong class="text-white font-semibold">desarrollo de software y aplicaciones web</strong>.
             </p>
 
-            <!-- Acciones / CTA Buttons -->
-            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a href="#projects" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-brand-500 to-blue-600 text-white shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:from-brand-400 hover:to-blue-500 transition-all duration-200 group">
+            <div class="cta-group pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 w-full sm:w-auto">
+              <a href="#projects" class="btn-primary w-full sm:w-auto text-sm px-6 py-3.5">
                 <span>Ver Proyectos</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </a>
-
-              <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-800/80 text-slate-200 border border-slate-700 hover:bg-slate-700/80 hover:text-white transition-all duration-200">
-                <i data-lucide="message-square" class="w-4 h-4 text-brand-400"></i>
+              <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-[#1e293b]/80 text-[#cbd5e1] border border-[#1e293b] hover:bg-[#1e293b]/80 hover:text-white transition-all min-h-[44px]">
+                <i data-lucide="message-square" class="w-4 h-4 text-[#0ea5e9]"></i>
                 <span>Contactar</span>
               </a>
-
-              <!-- Placeholder para descarga de CV -->
-              <!-- PLACEHOLDER: Reemplazar '#' con el link real a tu CV en PDF (ej. 'assets/cv-marcelo-soto.pdf') -->
-              <a href="#placeholder-cv" onclick="showToast('Reemplaza con el enlace real a tu archivo CV en formato PDF.')" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-medium text-xs text-slate-400 border border-dashed border-slate-700 hover:text-slate-200 hover:border-slate-500 transition-all">
+              <a href="cv-marcelo-soto.pdf" download class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-medium text-xs text-[#64748b] border border-dashed border-[#1e293b] hover:text-[#cbd5e1] hover:border-[#475569] transition-all min-h-[44px]">
                 <i data-lucide="file-text" class="w-4 h-4"></i>
                 <span>Descargar CV</span>
               </a>
             </div>
 
-            <!-- Puntos Clave de Confianza -->
-            <div class="pt-4 grid grid-cols-3 gap-4 border-t border-slate-800/80 text-left max-w-lg mx-auto lg:mx-0">
-              <div>
-                <p class="text-xl sm:text-2xl font-bold font-mono text-brand-400">2023</p>
-                <p class="text-xs text-slate-400">Egresado INACAP</p>
+            <div class="pt-4 grid grid-cols-3 gap-3 border-t border-[#1e293b]/80 max-w-lg mx-auto lg:mx-0">
+              <div class="text-center lg:text-left">
+                <p class="text-xl sm:text-2xl font-bold font-mono text-[#0ea5e9]">2022</p>
+                <p class="text-[10px] sm:text-xs text-[#64748b]">Egresado INACAP</p>
               </div>
-              <div>
+              <div class="text-center lg:text-left">
                 <p class="text-xl sm:text-2xl font-bold font-mono text-white">Full Stack</p>
-                <p class="text-xs text-slate-400">Web & Aplicaciones</p>
+                <p class="text-[10px] sm:text-xs text-[#64748b]">Web & Apps</p>
               </div>
-              <div>
+              <div class="text-center lg:text-left">
                 <p class="text-xl sm:text-2xl font-bold font-mono text-emerald-400">Soporte TI</p>
-                <p class="text-xs text-slate-400">Redes y Servidores</p>
+                <p class="text-[10px] sm:text-xs text-[#64748b]">Redes & Servidores</p>
               </div>
             </div>
 
           </div>
 
-          <!-- Columna Visual / Terminal Card / Foto Placeholder -->
           <div class="lg:col-span-5 flex justify-center">
-            <div class="w-full max-w-md bg-tech-card/90 rounded-2xl border border-tech-border p-6 shadow-2xl relative group">
-              <!-- Glow decorativo superior -->
-              <div class="absolute -top-3 -right-3 w-28 h-28 bg-brand-500/10 rounded-full blur-2xl group-hover:bg-brand-500/20 transition-all"></div>
+            <div class="w-full max-w-md card p-5 relative">
+              <div class="absolute -top-3 -right-3 w-24 h-24 bg-[#0ea5e9]/10 rounded-full blur-2xl"></div>
 
-              <!-- Ventana simulada de terminal de ingeniería -->
-              <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-                <div class="flex items-center gap-2">
-                  <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
-                  <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                  <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+              <div class="flex items-center justify-between pb-3 border-b border-[#1e293b]">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
                 </div>
-                <span class="text-xs font-mono text-slate-400">marcelo@profile ~ inacap</span>
+                <span class="text-[10px] font-mono text-[#475569]">marcelo@portafolio ~</span>
               </div>
 
-              <!-- Foto / Avatar Placeholder Elegante -->
-              <div class="mt-5 mb-5 flex flex-col items-center text-center">
-                <div class="relative w-28 h-28 rounded-full bg-gradient-to-br from-brand-500 to-indigo-600 p-[2px] shadow-lg">
-                  <!-- PLACEHOLDER: Reemplazar esta imagen por tu fotografía profesional real -->
-                  <div class="w-full h-full rounded-full bg-tech-dark overflow-hidden flex items-center justify-center">
-                    <img 
-                      id="profile-avatar"
-                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
-                      alt="Marcelo Iván Soto Ojeda - Foto de Perfil" 
-                      class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
-                      onerror="this.src='https://ui-avatars.com/api/?name=Marcelo+Soto&background=0f172a&color=38bdf8&size=256';"
-                    />
-                  </div>
-                  <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-tech-dark flex items-center justify-center" title="Activo"></span>
+              <div class="flex flex-col items-center py-4 sm:py-5">
+                <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#0ea5e9] to-indigo-600 p-[2px] shadow-lg shadow-[#0ea5e9]/20">
+                  <img 
+                    src="https://avatars.githubusercontent.com/u/73802838?v=4" 
+                    alt="Marcelo Soto" 
+                    class="w-full h-full rounded-full object-cover"
+                    onerror="this.src='https://ui-avatars.com/api/?name=Marcelo+Soto&background=0f172a&color=38bdf8&size=128'"
+                  />
+                  <span class="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-emerald-500 border-2 border-[#090d16]"></span>
                 </div>
-                <div class="mt-3">
-                  <h3 class="font-bold text-white text-base">Marcelo Soto Ojeda</h3>
-                  <p class="text-xs text-brand-400 font-mono">Ingeniero en Informática</p>
-                  <p class="text-[11px] text-slate-400 mt-0.5">Soporte TI • DevOps Junior • Full Stack</p>
-                </div>
+                <h3 class="font-bold text-white text-sm sm:text-base mt-2 sm:mt-3">Marcelo Ivan Soto Ojeda</h3>
+                <p class="text-[10px] sm:text-xs text-[#0ea5e9] font-mono">Ingeniero en Informática</p>
               </div>
 
-              <!-- Bloque de Código de Especificaciones -->
-              <div class="bg-tech-dark/90 rounded-xl p-3.5 border border-slate-800 text-xs font-mono text-slate-300 space-y-1.5">
-                <div class="flex items-center text-slate-400 text-[11px]">
+              <div class="bg-[#0a0e17] rounded-xl p-3 border border-[#1e293b] text-xs font-mono text-[#94a3b8] space-y-1">
+                <div class="flex items-center text-[10px]">
                   <span class="text-emerald-400 mr-2">➜</span>
                   <span>status --detailed</span>
                 </div>
-                <div class="text-[11px] leading-relaxed text-slate-300">
-                  <span class="text-sky-400">formacion:</span> "INACAP (2023)"<br/>
+                <div class="text-[10px] leading-relaxed text-[#cbd5e1]">
+                  <span class="text-sky-400">formacion:</span> "INACAP (2022)"<br/>
                   <span class="text-sky-400">ubicacion:</span> "Chile"<br/>
                   <span class="text-sky-400">enfoque:</span> ["Infraestructura", "Web", "Cloud"]<br/>
-                  <span class="text-sky-400">seguridad:</span> "Best practices & hardening"<br/>
-                  <span class="text-emerald-400">disponibilidad:</span> true
+                  <span class="text-emerald-400">disponible:</span> true
                 </div>
               </div>
 
-              <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+              <div class="mt-3 pt-3 border-t border-[#1e293b]/80 flex flex-wrap justify-between text-[10px] text-[#475569] gap-2">
                 <span class="flex items-center gap-1.5">
                   <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
                   Soporte & SysAdmin
                 </span>
                 <span class="flex items-center gap-1.5">
-                  <i data-lucide="cpu" class="w-3.5 h-3.5 text-brand-400"></i>
+                  <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#0ea5e9]"></i>
                   Desarrollo Moderno
                 </span>
               </div>
@@ -299,105 +539,96 @@
       </div>
     </section>
 
-    <!-- ==================== SOBRE MÍ (ABOUT ME) ==================== -->
-    <section id="about" class="py-20 border-b border-tech-border/50 relative">
+    <!-- ===== SOBRE MÍ ===== -->
+    <section id="about" class="py-14 sm:py-20 border-b border-[#1e293b]/50 relative">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- Encabezado de Sección -->
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#0ea5e9] bg-[#0ea5e9]/10 px-3 py-1 rounded-full border border-[#0ea5e9]/20">
             <i data-lucide="user" class="w-3 h-3"></i>
             <span>Trayectoria Profesional</span>
           </div>
           <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             Sobre Mí & Formación
           </h2>
-          <p class="text-slate-400 text-sm sm:text-base">
+          <p class="text-[#94a3b8] text-sm sm:text-base">
             Ingeniero en Informática con capacidad comprobada para operar en la intersección del hardware, las redes y el desarrollo de software.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
           
-          <!-- Narrativa Principal -->
-          <div class="lg:col-span-7 space-y-5 text-slate-300 leading-relaxed text-sm sm:text-base">
-            <div class="bg-tech-card/60 p-6 rounded-2xl border border-tech-border space-y-4">
-              <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                <i data-lucide="graduation-cap" class="w-5 h-5 text-brand-400"></i>
-                Egresado INACAP (2023)
+          <div class="lg:col-span-7 space-y-4 lg:space-y-5 text-[#cbd5e1] leading-relaxed text-sm sm:text-base">
+            <div class="bg-[#111827]/60 p-5 sm:p-6 rounded-2xl border border-[#1e293b] space-y-3 sm:space-y-4">
+              <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-[#0ea5e9]"></i>
+                Egresado INACAP (2022)
               </h3>
-              <p>
-                Soy <strong class="text-white">Marcelo Iván Soto Ojeda</strong>, Ingeniero en Informática titulado de <strong class="text-brand-300">INACAP en 2023</strong>. Mi formación universitaria me otorgó una perspectiva integral del ciclo de vida tecnológico: desde la concepción lógica del código y las arquitecturas de bases de datos, hasta el despliegue en entornos productivos y el soporte técnico de infraestructura crítica.
+              <p class="text-sm">
+                Soy <strong class="text-white">Marcelo Ivan Soto Ojeda</strong>, Ingeniero en Informática titulado de <strong class="text-[#38bdf8]">INACAP en 2022</strong>. Mi formación universitaria me otorgó una perspectiva integral del ciclo de vida tecnológico: desde la concepción lógica del código y las arquitecturas de bases de datos, hasta el despliegue en entornos productivos y el soporte técnico de infraestructura crítica.
               </p>
-              <p>
+              <p class="text-sm">
                 Lo que define mi perfil profesional es la <strong class="text-white">versatilidad técnica</strong>. No me limito únicamente al desarrollo de interfaces o lógica de backend; poseo sólidas competencias para diagnosticar incidentes de red, configurar servidores, virtualizar cargas de trabajo y garantizar que los servicios corporativos se mantengan con alta disponibilidad.
-              </p>
-              <p>
-                Me caracterizo por un enfoque analítico, proactivo y meticuloso, orientado a la resolución metódica de problemas, la optimización continua de procesos y la aplicación de buenas prácticas de ciberseguridad y documentación.
               </p>
             </div>
 
-            <!-- Valores / Métricas de Desempeño -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 flex items-start gap-3.5">
-                <div class="p-2 rounded-lg bg-brand-500/10 text-brand-400 border border-brand-500/20">
-                  <i data-lucide="server" class="w-5 h-5"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div class="p-4 rounded-xl bg-[#0d1320]/60 border border-[#1e293b] flex items-start gap-3">
+                <div class="p-2 rounded-lg bg-[#0ea5e9]/10 text-[#0ea5e9] border border-[#0ea5e9]/20 flex-shrink-0">
+                  <i data-lucide="server" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white text-sm">Mentalidad de Infraestructura</h4>
-                  <p class="text-xs text-slate-400 mt-0.5">Diseño software pensando en la escalabilidad, recursos de servidor y facilidad de mantenimiento.</p>
+                  <h4 class="font-semibold text-white text-xs sm:text-sm">Mentalidad de Infraestructura</h4>
+                  <p class="text-[11px] sm:text-xs text-[#64748b] mt-0.5">Diseño software pensando en la escalabilidad y mantenibilidad.</p>
                 </div>
               </div>
 
-              <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 flex items-start gap-3.5">
-                <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  <i data-lucide="headphones" class="w-5 h-5"></i>
+              <div class="p-4 rounded-xl bg-[#0d1320]/60 border border-[#1e293b] flex items-start gap-3">
+                <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex-shrink-0">
+                  <i data-lucide="headphones" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </div>
                 <div>
-                  <h4 class="font-semibold text-white text-sm">Resolución Efectiva</h4>
-                  <p class="text-xs text-slate-400 mt-0.5">Diagnóstico rápido de fallas en hardware, software, conectividad y sistemas operativos.</p>
+                  <h4 class="font-semibold text-white text-xs sm:text-sm">Resolución Efectiva</h4>
+                  <p class="text-[11px] sm:text-xs text-[#64748b] mt-0.5">Diagnóstico rápido de fallas en hardware, software y redes.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Columna Lateral: Hitos y Credenciales -->
           <div class="lg:col-span-5 space-y-4">
             
-            <!-- Tarjeta de Titulación -->
-            <div class="p-6 rounded-2xl bg-gradient-to-b from-tech-card to-tech-surface border border-tech-border shadow-lg relative overflow-hidden">
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-mono font-bold text-brand-400 uppercase tracking-wider">Certificación Académica</span>
-                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-brand-500/20 text-brand-300 border border-brand-500/30">2019 - 2023</span>
+            <div class="p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-[#111827] to-[#0d1320] border border-[#1e293b] shadow-lg">
+              <div class="flex items-center justify-between mb-3 sm:mb-4 gap-2 flex-wrap">
+                <span class="text-[10px] sm:text-xs font-mono font-bold text-[#0ea5e9] uppercase tracking-wider">Certificación Académica</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-[#0ea5e9]/20 text-[#38bdf8] border border-[#0ea5e9]/30">2018 - 2022</span>
               </div>
-              <h4 class="text-lg font-bold text-white">Ingeniería en Informática</h4>
-              <p class="text-sm text-slate-300 mt-1 font-medium">Universidad Tecnológica de Chile • INACAP</p>
+              <h4 class="text-base sm:text-lg font-bold text-white">Ingeniería en Informática</h4>
+              <p class="text-xs sm:text-sm text-[#94a3b8] mt-1 font-medium">Universidad Tecnológica de Chile • INACAP</p>
               
-              <ul class="mt-4 space-y-2 text-xs text-slate-400">
+              <ul class="mt-3 sm:mt-4 space-y-2 text-[11px] sm:text-xs text-[#94a3b8]">
                 <li class="flex items-center gap-2">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0"></i>
                   <span>Plan de estudios con énfasis en ingeniería de software y redes</span>
                 </li>
                 <li class="flex items-center gap-2">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0"></i>
                   <span>Administración de sistemas operativos (Linux / Windows Server)</span>
                 </li>
                 <li class="flex items-center gap-2">
-                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0"></i>
                   <span>Arquitectura de datos relacionales y soluciones empresariales</span>
                 </li>
               </ul>
             </div>
 
-            <!-- Resumen Rápido de Aptitudes -->
-            <div class="p-5 rounded-2xl bg-tech-card/80 border border-tech-border space-y-3">
-              <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">Pilares de Trabajo</h4>
-              <div class="flex flex-wrap gap-2 text-xs font-mono">
-                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">Resolución de Incidentes</span>
-                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">Atención a Usuarios / Mesa de Ayuda</span>
-                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">Clean Code & Refactor</span>
-                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">Virtualización (VMware/Proxmox)</span>
-                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">Git & Trabajo Colaborativo</span>
+            <div class="p-4 sm:p-5 rounded-2xl bg-[#111827]/80 border border-[#1e293b] space-y-3">
+              <h4 class="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-[#64748b] font-semibold">Pilares de Trabajo</h4>
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono">
+                <span class="px-2 py-1 rounded-md bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Resolución de Incidentes</span>
+                <span class="px-2 py-1 rounded-md bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Mesa de Ayuda</span>
+                <span class="px-2 py-1 rounded-md bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Clean Code</span>
+                <span class="px-2 py-1 rounded-md bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Virtualización</span>
+                <span class="px-2 py-1 rounded-md bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Git</span>
               </div>
             </div>
 
@@ -408,147 +639,131 @@
       </div>
     </section>
 
-    <!-- ==================== ESPECIALIDADES / ÁREAS DE DOMINIO ==================== -->
-    <section id="services" class="py-20 border-b border-tech-border/50 relative">
+    <!-- ===== ESPECIALIDADES ===== -->
+    <section id="services" class="py-14 sm:py-20 border-b border-[#1e293b]/50 bg-[#0d1320]/40">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#0ea5e9] bg-[#0ea5e9]/10 px-3 py-1 rounded-full border border-[#0ea5e9]/20">
             <i data-lucide="layers" class="w-3 h-3"></i>
             <span>Servicios & Capacidades</span>
           </div>
           <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             Áreas de Dominio Técnico
           </h2>
-          <p class="text-slate-400 text-sm sm:text-base">
-            Soluciones integrales que combinan la administración de infraestructura de TI con el desarrollo de productos digitales modernos.
+          <p class="text-[#94a3b8] text-sm sm:text-base">
+            Soluciones integrales que combinan la administración de infraestructura con el desarrollo de productos digitales.
           </p>
         </div>
 
-        <!-- Grilla de Especialidades -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           
-          <!-- Especialidad 1: Soporte & Infraestructura -->
-          <div class="bg-tech-card/80 hover:bg-tech-card transition-all duration-300 rounded-2xl p-7 border border-tech-border hover:border-brand-500/40 shadow-lg flex flex-col justify-between group">
-            <div class="space-y-4">
-              <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-brand-400 border border-sky-500/20 flex items-center justify-center group-hover:scale-105 group-hover:bg-brand-500 group-hover:text-white transition-all">
-                <i data-lucide="network" class="w-6 h-6"></i>
+          <div class="bg-[#111827]/80 hover:bg-[#111827] transition-all duration-300 rounded-2xl p-5 sm:p-6 lg:p-7 border border-[#1e293b] hover:border-[#0ea5e9]/40 shadow-lg flex flex-col justify-between group">
+            <div class="space-y-3 sm:space-y-4">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-sky-500/10 text-[#38bdf8] border border-sky-500/20 flex items-center justify-center group-hover:scale-105 group-hover:bg-[#0ea5e9] group-hover:text-white transition-all">
+                <i data-lucide="network" class="w-5 h-5 sm:w-6 sm:h-6"></i>
               </div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-[#0ea5e9] transition-colors">
                 Soporte & Infraestructura
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed">
-                Administración integral de servidores, atención de soporte técnico nivel 1 y 2, configuración de redes LAN/WAN, virtualización y respaldo de datos críticos para la continuidad operativa.
+              <p class="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+                Administración de servidores, soporte N1/N2, redes LAN/WAN, virtualización y respaldos.
               </p>
               
               <div class="pt-2">
-                <p class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-2">Competencias Clave:</p>
-                <ul class="text-xs text-slate-300 space-y-1.5 font-mono">
+                <p class="text-[10px] sm:text-xs font-mono font-semibold text-[#64748b] uppercase tracking-wider mb-2">Competencias:</p>
+                <ul class="text-[11px] sm:text-xs text-[#94a3b8] space-y-1.5 font-mono">
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Administración Windows Server & Linux (Ubuntu/Debian)</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8] flex-shrink-0"></span>
+                    <span>Windows Server & Linux</span>
                   </li>
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Virtualización con Proxmox, Hyper-V y VMware</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8] flex-shrink-0"></span>
+                    <span>Proxmox, Hyper-V, VMware</span>
                   </li>
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Configuración de DHCP, DNS, VLANs y routers/switches</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Planes de respaldo (Backup) y recuperación ante fallas</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8] flex-shrink-0"></span>
+                    <span>DHCP, DNS, VLANs</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between text-xs text-brand-400 font-mono">
+            <div class="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-[#1e293b] flex items-center justify-between text-[10px] sm:text-xs text-[#0ea5e9] font-mono">
               <span>Alta Disponibilidad</span>
               <i data-lucide="check" class="w-4 h-4"></i>
             </div>
           </div>
 
-          <!-- Especialidad 2: Desarrollo Web -->
-          <div class="bg-tech-card/80 hover:bg-tech-card transition-all duration-300 rounded-2xl p-7 border border-tech-border hover:border-brand-500/40 shadow-lg flex flex-col justify-between group">
-            <div class="space-y-4">
-              <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                <i data-lucide="code-2" class="w-6 h-6"></i>
+          <div class="bg-[#111827]/80 hover:bg-[#111827] transition-all duration-300 rounded-2xl p-5 sm:p-6 lg:p-7 border border-[#1e293b] hover:border-[#0ea5e9]/40 shadow-lg flex flex-col justify-between group">
+            <div class="space-y-3 sm:space-y-4">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <i data-lucide="code-2" class="w-5 h-5 sm:w-6 sm:h-6"></i>
               </div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-[#0ea5e9] transition-colors">
                 Desarrollo Web Full Stack
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed">
-                Diseño e implementación de sitios web corporativos y plataformas dinámicas a medida. Optimización de velocidad, interfaces fluidas, diseño adaptativo y consumo eficiente de APIs REST.
+              <p class="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+                Sitios web, plataformas dinámicas y APIs REST. Optimización de rendimiento y UX.
               </p>
               
               <div class="pt-2">
-                <p class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-2">Competencias Clave:</p>
-                <ul class="text-xs text-slate-300 space-y-1.5 font-mono">
+                <p class="text-[10px] sm:text-xs font-mono font-semibold text-[#64748b] uppercase tracking-wider mb-2">Competencias:</p>
+                <ul class="text-[11px] sm:text-xs text-[#94a3b8] space-y-1.5 font-mono">
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Frontend: HTML5, CSS3, Tailwind CSS, JavaScript/TypeScript</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0"></span>
+                    <span>React, Next.js, Vue.js</span>
                   </li>
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Frameworks: React, Next.js / Vue.js según requerimiento</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0"></span>
+                    <span>Node.js, Python, PHP</span>
                   </li>
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Backend: Node.js, Express, Python (FastAPI/Flask), PHP</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Optimización SEO técnico, accesibilidad y rendimiento</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-400 flex-shrink-0"></span>
+                    <span>Tailwind, TypeScript</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between text-xs text-brand-400 font-mono">
+            <div class="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-[#1e293b] flex items-center justify-between text-[10px] sm:text-xs text-[#0ea5e9] font-mono">
               <span>Mobile-First & Clean Code</span>
               <i data-lucide="check" class="w-4 h-4"></i>
             </div>
           </div>
 
-          <!-- Especialidad 3: Desarrollo de Aplicaciones -->
-          <div class="bg-tech-card/80 hover:bg-tech-card transition-all duration-300 rounded-2xl p-7 border border-tech-border hover:border-brand-500/40 shadow-lg flex flex-col justify-between group">
-            <div class="space-y-4">
-              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center group-hover:scale-105 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                <i data-lucide="app-window" class="w-6 h-6"></i>
+          <div class="bg-[#111827]/80 hover:bg-[#111827] transition-all duration-300 rounded-2xl p-5 sm:p-6 lg:p-7 border border-[#1e293b] hover:border-[#0ea5e9]/40 shadow-lg flex flex-col justify-between group md:col-span-2 lg:col-span-1">
+            <div class="space-y-3 sm:space-y-4">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center group-hover:scale-105 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                <i data-lucide="app-window" class="w-5 h-5 sm:w-6 sm:h-6"></i>
               </div>
-              <h3 class="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
+              <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-[#0ea5e9] transition-colors">
                 Desarrollo de Aplicaciones
               </h3>
-              <p class="text-sm text-slate-300 leading-relaxed">
-                Creación e integración de aplicaciones empresariales, sistemas de gestión internos (CRUD), automatización de tareas y conexión robusta con bases de datos relacionales y no relacionales.
+              <p class="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+                Sistemas CRUD, automatización, integración de BBDD y despliegue de aplicaciones.
               </p>
               
               <div class="pt-2">
-                <p class="text-xs font-mono font-semibold text-slate-400 uppercase tracking-wider mb-2">Competencias Clave:</p>
-                <ul class="text-xs text-slate-300 space-y-1.5 font-mono">
+                <p class="text-[10px] sm:text-xs font-mono font-semibold text-[#64748b] uppercase tracking-wider mb-2">Competencias:</p>
+                <ul class="text-[11px] sm:text-xs text-[#94a3b8] space-y-1.5 font-mono">
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Diseño de Bases de Datos: PostgreSQL, MySQL, SQL Server</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                    <span>PostgreSQL, MySQL, SQL Server</span>
                   </li>
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>APIs RESTful seguras con autenticación JWT / OAuth</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                    <span>APIs RESTful con JWT</span>
                   </li>
                   <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Automatización de flujos y scripts de mantenimiento (Bash/Python)</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                    <span>Despliegue y containerización básica con Docker</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                    <span>Docker, Bash, Python</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div class="pt-6 mt-6 border-t border-slate-800 flex items-center justify-between text-xs text-brand-400 font-mono">
+            <div class="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-[#1e293b] flex items-center justify-between text-[10px] sm:text-xs text-[#0ea5e9] font-mono">
               <span>Escalabilidad & Datos</span>
               <i data-lucide="check" class="w-4 h-4"></i>
             </div>
@@ -559,163 +774,412 @@
       </div>
     </section>
 
-    <!-- ==================== PROYECTOS / PORTAFOLIO ==================== -->
-    <section id="projects" class="py-20 border-b border-tech-border/50 relative">
+    <!-- ===== CERTIFICACIONES ===== -->
+    <section id="certifications" class="py-14 sm:py-20 border-b border-[#1e293b]/50 relative">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#0ea5e9] bg-[#0ea5e9]/10 px-3 py-1 rounded-full border border-[#0ea5e9]/20">
+            <i data-lucide="award" class="w-3 h-3"></i>
+            <span>Certificaciones Profesionales</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+            Certificaciones y Cursos
+          </h2>
+          <p class="text-[#94a3b8] text-sm sm:text-base">
+            Formación continua en tecnologías cloud, redes, desarrollo y buenas prácticas de TI.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          
+          <div class="bg-[#111827] rounded-2xl border border-[#1e293b] p-5 sm:p-6 hover:border-[#0ea5e9]/40 transition-all duration-300 group">
+            <div class="flex items-center gap-3 sm:gap-4 mb-4">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[#1e293b] flex items-center justify-center text-[#38bdf8] group-hover:scale-110 transition-transform flex-shrink-0">
+                <i data-lucide="cloud" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs sm:text-sm font-bold text-white group-hover:text-[#0ea5e9] transition-colors">Cloud & DevOps</h4>
+                <p class="text-[10px] sm:text-xs text-[#64748b]">AWS • Azure • GCP</p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-[11px] sm:text-xs text-[#cbd5e1]">
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+                  <span class="truncate">AWS Cloud Practitioner</span>
+                </span>
+                <a href="certificados/aws-cloud-practitioner.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>
+                  <span class="truncate">Azure Fundamentals</span>
+                </span>
+                <a href="certificados/azure-fundamentals.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                  <span class="truncate">GCP Digital Leader</span>
+                </span>
+                <a href="certificados/gcp-digital-leader.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-[#111827] rounded-2xl border border-[#1e293b] p-5 sm:p-6 hover:border-[#0ea5e9]/40 transition-all duration-300 group">
+            <div class="flex items-center gap-3 sm:gap-4 mb-4">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[#1e293b] flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform flex-shrink-0">
+                <i data-lucide="router" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs sm:text-sm font-bold text-white group-hover:text-[#0ea5e9] transition-colors">Redes & Seguridad</h4>
+                <p class="text-[10px] sm:text-xs text-[#64748b]">Cisco • CompTIA</p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-[11px] sm:text-xs text-[#cbd5e1]">
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+                  <span class="truncate">CCNA Routing & Switching</span>
+                </span>
+                <a href="certificados/ccna-routing-switching.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>
+                  <span class="truncate">CompTIA Security+</span>
+                </span>
+                <a href="certificados/comptia-security-plus.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                  <span class="truncate">Fortinet NSE 1 & 2</span>
+                </span>
+                <a href="certificados/fortinet-nse-1-2.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-[#111827] rounded-2xl border border-[#1e293b] p-5 sm:p-6 hover:border-[#0ea5e9]/40 transition-all duration-300 group md:col-span-2 lg:col-span-1">
+            <div class="flex items-center gap-3 sm:gap-4 mb-4">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[#1e293b] flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform flex-shrink-0">
+                <i data-lucide="code" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-xs sm:text-sm font-bold text-white group-hover:text-[#0ea5e9] transition-colors">Desarrollo</h4>
+                <p class="text-[10px] sm:text-xs text-[#64748b]">LinkedIn • Platzi • Udemy</p>
+              </div>
+            </div>
+            <ul class="space-y-2 text-[11px] sm:text-xs text-[#cbd5e1]">
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0"></span>
+                  <span class="truncate">React + TypeScript</span>
+                </span>
+                <a href="certificados/react-typescript-linkedin.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0"></span>
+                  <span class="truncate">Docker y Kubernetes</span>
+                </span>
+                <a href="certificados/docker-kubernetes-platzi.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+              <li class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="flex items-center gap-2 min-w-0 flex-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                  <span class="truncate">Python Data Science</span>
+                </span>
+                <a href="certificados/python-data-science-udemy.pdf" target="_blank" class="cert-btn">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Ver PDF</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== TIMELINE ===== -->
+    <section id="timeline" class="py-14 sm:py-20 border-b border-[#1e293b]/50 relative bg-[#0d1320]/40">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#0ea5e9] bg-[#0ea5e9]/10 px-3 py-1 rounded-full border border-[#0ea5e9]/20">
+            <i data-lucide="clock" class="w-3 h-3"></i>
+            <span>Línea de Tiempo</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+            Mi Evolución Profesional
+          </h2>
+          <p class="text-[#94a3b8] text-sm sm:text-base">
+            Trayectoria académica y profesional desde 2018 hasta la actualidad.
+          </p>
+        </div>
+
+        <div class="relative">
+          <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-[#0ea5e9]/50 via-[#1e293b] to-[#0ea5e9]/50"></div>
+          
+          <div class="space-y-8 sm:space-y-12">
+            
+            <div class="relative flex flex-col md:flex-row items-start gap-6 md:gap-12 pl-12 md:pl-0">
+              <div class="md:w-1/2 md:text-right md:pr-12 w-full">
+                <div class="bg-[#111827] p-4 sm:p-6 rounded-2xl border border-[#1e293b] hover:border-[#0ea5e9]/40 transition-all duration-300">
+                  <span class="text-[10px] sm:text-xs font-mono text-[#0ea5e9]">2018 - 2022</span>
+                  <h4 class="text-base sm:text-lg font-bold text-white mt-1">Ingeniería en Informática</h4>
+                  <p class="text-xs sm:text-sm text-[#94a3b8]">INACAP • Universidad Tecnológica de Chile</p>
+                  <p class="text-[11px] sm:text-xs text-[#cbd5e1] mt-2">Formación integral en ingeniería de software, redes, bases de datos y administración de sistemas.</p>
+                </div>
+              </div>
+              <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#0ea5e9] border-2 border-[#090d16] timeline-dot z-10 top-6"></div>
+              <div class="md:w-1/2 hidden md:block"></div>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row items-start gap-6 md:gap-12 pl-12 md:pl-0">
+              <div class="md:w-1/2 hidden md:block"></div>
+              <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#0ea5e9] border-2 border-[#090d16] timeline-dot z-10 top-6"></div>
+              <div class="md:w-1/2 md:text-left md:pl-12 w-full">
+                <div class="bg-[#111827] p-4 sm:p-6 rounded-2xl border border-[#1e293b] hover:border-[#0ea5e9]/40 transition-all duration-300">
+                  <span class="text-[10px] sm:text-xs font-mono text-[#0ea5e9]">2022</span>
+                  <h4 class="text-base sm:text-lg font-bold text-white mt-1">Titulación y Egreso</h4>
+                  <p class="text-xs sm:text-sm text-[#94a3b8]">INACAP</p>
+                  <p class="text-[11px] sm:text-xs text-[#cbd5e1] mt-2">Obtención del título de Ingeniero en Informática.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row items-start gap-6 md:gap-12 pl-12 md:pl-0">
+              <div class="md:w-1/2 md:text-right md:pr-12 w-full">
+                <div class="bg-[#111827] p-4 sm:p-6 rounded-2xl border border-[#1e293b] hover:border-[#0ea5e9]/40 transition-all duration-300">
+                  <span class="text-[10px] sm:text-xs font-mono text-[#0ea5e9]">2022 - 2023</span>
+                  <h4 class="text-base sm:text-lg font-bold text-white mt-1">Soporte TI y Administración</h4>
+                  <p class="text-xs sm:text-sm text-[#94a3b8]">Experiencia Profesional</p>
+                  <p class="text-[11px] sm:text-xs text-[#cbd5e1] mt-2">Gestión de infraestructura, atención a usuarios y mantenimiento de redes.</p>
+                </div>
+              </div>
+              <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#0ea5e9] border-2 border-[#090d16] timeline-dot z-10 top-6"></div>
+              <div class="md:w-1/2 hidden md:block"></div>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row items-start gap-6 md:gap-12 pl-12 md:pl-0">
+              <div class="md:w-1/2 hidden md:block"></div>
+              <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-[#0ea5e9] border-2 border-[#090d16] timeline-dot z-10 top-6"></div>
+              <div class="md:w-1/2 md:text-left md:pl-12 w-full">
+                <div class="bg-[#111827] p-4 sm:p-6 rounded-2xl border border-[#1e293b] hover:border-[#0ea5e9]/40 transition-all duration-300">
+                  <span class="text-[10px] sm:text-xs font-mono text-[#0ea5e9]">2023 - 2026</span>
+                  <h4 class="text-base sm:text-lg font-bold text-white mt-1">DevOps & Cloud Native</h4>
+                  <p class="text-xs sm:text-sm text-[#94a3b8]">Especialización Continua</p>
+                  <p class="text-[11px] sm:text-xs text-[#cbd5e1] mt-2">Contenedores, orquestación, monitoreo y automatización cloud.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== ESTADÍSTICAS ===== -->
+    <section class="py-12 sm:py-16 border-b border-[#1e293b]/50 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+          
+          <div class="text-center p-4 sm:p-6 rounded-2xl bg-[#111827] border border-[#1e293b]">
+            <p class="text-2xl sm:text-3xl md:text-4xl font-bold font-mono text-[#0ea5e9] stat-number" data-count="8">0</p>
+            <p class="text-[10px] sm:text-xs text-[#64748b] mt-1">Proyectos Completados</p>
+          </div>
+
+          <div class="text-center p-4 sm:p-6 rounded-2xl bg-[#111827] border border-[#1e293b]">
+            <p class="text-2xl sm:text-3xl md:text-4xl font-bold font-mono text-emerald-400 stat-number" data-count="5">0</p>
+            <p class="text-[10px] sm:text-xs text-[#64748b] mt-1">Años de Experiencia</p>
+          </div>
+
+          <div class="text-center p-4 sm:p-6 rounded-2xl bg-[#111827] border border-[#1e293b]">
+            <p class="text-2xl sm:text-3xl md:text-4xl font-bold font-mono text-sky-400 stat-number" data-count="12">0</p>
+            <p class="text-[10px] sm:text-xs text-[#64748b] mt-1">Certificaciones</p>
+          </div>
+
+          <div class="text-center p-4 sm:p-6 rounded-2xl bg-[#111827] border border-[#1e293b]">
+            <p class="text-2xl sm:text-3xl md:text-4xl font-bold font-mono text-purple-400 stat-number" data-count="15">0</p>
+            <p class="text-[10px] sm:text-xs text-[#64748b] mt-1">Clientes Satisfechos</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROYECTOS ===== -->
+    <section id="projects" class="py-14 sm:py-20 border-b border-[#1e293b]/50 relative bg-[#0d1320]/40">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 gap-4">
           <div class="space-y-3">
-            <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+            <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#0ea5e9] bg-[#0ea5e9]/10 px-3 py-1 rounded-full border border-[#0ea5e9]/20">
               <i data-lucide="briefcase" class="w-3 h-3"></i>
-              <span>Casos Prácticos & Portafolio</span>
+              <span>Portafolio</span>
             </div>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
               Proyectos Destacados
             </h2>
-            <p class="text-slate-400 text-sm sm:text-base max-w-xl">
-              Selección de iniciativas representativas que reflejan capacidades en infraestructura, desarrollo full stack y automatización de procesos.
+            <p class="text-[#94a3b8] text-sm sm:text-base max-w-xl">
+              Selección de iniciativas representativas que reflejan mis capacidades.
             </p>
           </div>
 
-          <!-- Filtro Visual de Categorías -->
-          <div class="flex flex-wrap gap-2 text-xs font-mono">
-            <button class="px-3 py-1.5 rounded-lg bg-brand-500 text-white font-medium">Todos</button>
-            <button class="px-3 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 hover:bg-slate-700 transition-colors">Infraestructura</button>
-            <button class="px-3 py-1.5 rounded-lg bg-slate-800/80 text-slate-300 hover:bg-slate-700 transition-colors">Web Apps</button>
+          <div class="flex flex-wrap gap-2 text-[11px] sm:text-xs font-mono">
+            <button class="px-3 py-1.5 rounded-lg bg-[#0ea5e9] text-white font-medium min-h-[32px]">Todos</button>
+            <button class="px-3 py-1.5 rounded-lg bg-[#1e293b]/80 text-[#94a3b8] hover:bg-[#1e293b] transition-colors min-h-[32px]">Infraestructura</button>
+            <button class="px-3 py-1.5 rounded-lg bg-[#1e293b]/80 text-[#94a3b8] hover:bg-[#1e293b] transition-colors min-h-[32px]">Web Apps</button>
           </div>
         </div>
 
-        <!-- Grid de Proyectos -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
           
-          <!-- Proyecto 1: Sistema de Gestión de Tickets y Soporte TI -->
-          <div class="bg-tech-card rounded-2xl border border-tech-border overflow-hidden flex flex-col justify-between hover:border-brand-500/40 transition-all duration-300 group shadow-lg">
+          <div class="bg-[#111827] rounded-2xl border border-[#1e293b] overflow-hidden flex flex-col justify-between hover:border-[#0ea5e9]/40 transition-all duration-300 group shadow-lg">
             <div>
-              <!-- Imagen / Visual Placeholder del Proyecto -->
-              <!-- PLACEHOLDER: Reemplazar 'src' con captura real de la pantalla del proyecto -->
-              <div class="relative h-48 bg-slate-900 overflow-hidden border-b border-slate-800">
+              <div class="relative h-44 sm:h-48 bg-[#0a0e17] overflow-hidden border-b border-[#1e293b]">
                 <img 
                   src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=80" 
-                  alt="Sistema de Gestión de Soporte y Tickets TI" 
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100" 
+                  alt="HelpDesk" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100 gallery-img" 
                 />
-                <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tech-dark/85 backdrop-blur-md border border-slate-700 text-[11px] font-mono text-brand-300">
-                  Full Stack / TI
+                <div class="absolute top-3 right-3 px-2 py-1 rounded-md bg-[#090d16]/85 backdrop-blur-md border border-[#1e293b] text-[10px] font-mono text-[#38bdf8]">
+                  Full Stack
                 </div>
               </div>
 
-              <div class="p-6 space-y-3">
-                <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">
-                  Plataforma HelpDesk & Gestión de Incidencias
+              <div class="p-4 sm:p-6 space-y-3">
+                <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-[#0ea5e9] transition-colors">
+                  Plataforma HelpDesk
                 </h3>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  Sistema web para control y seguimiento de tickets de soporte técnico, asignación por prioridades (SLA), inventario de equipos y generación de reportes operativos.
+                <p class="text-[11px] sm:text-xs text-[#94a3b8] leading-relaxed">
+                  Sistema web para control de tickets de soporte técnico, asignación por SLA, inventario y reportes.
                 </p>
 
-                <!-- Tags de Tecnologías Utilizadas -->
                 <div class="pt-2 flex flex-wrap gap-1.5">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">React</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Node.js</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">PostgreSQL</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Tailwind CSS</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">React</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Node.js</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">PostgreSQL</span>
                 </div>
               </div>
             </div>
 
-            <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-800/80 mt-4 text-xs font-mono">
-              <!-- PLACEHOLDER: Enlaza a tu repositorio real en GitHub o demostración en vivo -->
-              <a href="#placeholder-demo-1" onclick="showToast('Enlace de demostración: Reemplaza con tu URL de proyecto o GitHub.')" class="inline-flex items-center gap-1.5 text-brand-400 hover:text-brand-300 transition-colors">
+            <div class="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 flex items-center justify-between border-t border-[#1e293b]/80 mt-4 text-[11px] font-mono">
+              <a href="#" class="inline-flex items-center gap-1.5 text-[#0ea5e9] hover:text-[#38bdf8] transition-colors">
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                <span>Ver Detalles</span>
+                <span>Detalles</span>
               </a>
-              <a href="#placeholder-github-1" onclick="showToast('Repositorio: Reemplaza con el link directo a tu repositorio.')" class="inline-flex items-center gap-1 text-slate-400 hover:text-white transition-colors">
+              <a href="#" class="inline-flex items-center gap-1 text-[#64748b] hover:text-white transition-colors">
                 <i data-lucide="github" class="w-3.5 h-3.5"></i>
                 <span>Código</span>
               </a>
             </div>
           </div>
 
-          <!-- Proyecto 2: Entorno de Servidores Virtualizados & Monitoreo -->
-          <div class="bg-tech-card rounded-2xl border border-tech-border overflow-hidden flex flex-col justify-between hover:border-brand-500/40 transition-all duration-300 group shadow-lg">
+          <div class="bg-[#111827] rounded-2xl border border-[#1e293b] overflow-hidden flex flex-col justify-between hover:border-[#0ea5e9]/40 transition-all duration-300 group shadow-lg">
             <div>
-              <!-- PLACEHOLDER: Reemplazar 'src' con diagrama o captura de red real -->
-              <div class="relative h-48 bg-slate-900 overflow-hidden border-b border-slate-800">
+              <div class="relative h-44 sm:h-48 bg-[#0a0e17] overflow-hidden border-b border-[#1e293b]">
                 <img 
                   src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=700&q=80" 
-                  alt="Infraestructura de Servidores y Redes" 
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100" 
+                  alt="Infraestructura" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100 gallery-img" 
                 />
-                <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tech-dark/85 backdrop-blur-md border border-slate-700 text-[11px] font-mono text-emerald-300">
+                <div class="absolute top-3 right-3 px-2 py-1 rounded-md bg-[#090d16]/85 backdrop-blur-md border border-[#1e293b] text-[10px] font-mono text-emerald-300">
                   Infraestructura
                 </div>
               </div>
 
-              <div class="p-6 space-y-3">
-                <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">
-                  Infraestructura Virtualizada & Monitoreo Proactivo
+              <div class="p-4 sm:p-6 space-y-3">
+                <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-[#0ea5e9] transition-colors">
+                  Infraestructura Virtualizada
                 </h3>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  Despliegue de clúster de virtualización con Proxmox VE, segmentación por VLANs, servidor de archivos seguro Samba/NFS y telemetría de recursos mediante Grafana y Prometheus.
+                <p class="text-[11px] sm:text-xs text-[#94a3b8] leading-relaxed">
+                  Clúster Proxmox, VLANs, servidor Samba/NFS y monitoreo con Grafana + Prometheus.
                 </p>
 
-                <!-- Tags de Tecnologías Utilizadas -->
                 <div class="pt-2 flex flex-wrap gap-1.5">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Proxmox VE</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Linux / Debian</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Docker</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Grafana</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Proxmox</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Debian</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Grafana</span>
                 </div>
               </div>
             </div>
 
-            <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-800/80 mt-4 text-xs font-mono">
-              <a href="#placeholder-demo-2" onclick="showToast('Caso de estudio de infraestructura: Reemplaza con documentación o enlace.')" class="inline-flex items-center gap-1.5 text-brand-400 hover:text-brand-300 transition-colors">
+            <div class="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 flex items-center justify-between border-t border-[#1e293b]/80 mt-4 text-[11px] font-mono">
+              <a href="#" class="inline-flex items-center gap-1.5 text-[#0ea5e9] hover:text-[#38bdf8] transition-colors">
                 <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
                 <span>Documentación</span>
               </a>
-              <span class="text-slate-400 text-[11px]">SysAdmin / Redes</span>
+              <span class="text-[#64748b]">SysAdmin</span>
             </div>
           </div>
 
-          <!-- Proyecto 3: Aplicación Web Corporativa & Portal de Servicios -->
-          <div class="bg-tech-card rounded-2xl border border-tech-border overflow-hidden flex flex-col justify-between hover:border-brand-500/40 transition-all duration-300 group shadow-lg">
+          <div class="bg-[#111827] rounded-2xl border border-[#1e293b] overflow-hidden flex flex-col justify-between hover:border-[#0ea5e9]/40 transition-all duration-300 group shadow-lg md:col-span-2 lg:col-span-1">
             <div>
-              <!-- PLACEHOLDER: Reemplazar 'src' con captura de portal corporativo -->
-              <div class="relative h-48 bg-slate-900 overflow-hidden border-b border-slate-800">
+              <div class="relative h-44 sm:h-48 bg-[#0a0e17] overflow-hidden border-b border-[#1e293b]">
                 <img 
                   src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80" 
-                  alt="Portal Web Corporativo Moderno" 
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100" 
+                  alt="Portal web" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100 gallery-img" 
                 />
-                <div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tech-dark/85 backdrop-blur-md border border-slate-700 text-[11px] font-mono text-sky-300">
-                  Desarrollo Web
+                <div class="absolute top-3 right-3 px-2 py-1 rounded-md bg-[#090d16]/85 backdrop-blur-md border border-[#1e293b] text-[10px] font-mono text-sky-300">
+                  Web
                 </div>
               </div>
 
-              <div class="p-6 space-y-3">
-                <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">
-                  Portal Corporativo con Módulo de Cotizaciones
+              <div class="p-4 sm:p-6 space-y-3">
+                <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-[#0ea5e9] transition-colors">
+                  Portal Corporativo
                 </h3>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  Sitio web responsivo con catálogo de servicios interactivo, formulario dinámico de requerimientos con validación en tiempo real y notificaciones automatizadas vía correo electrónico.
+                <p class="text-[11px] sm:text-xs text-[#94a3b8] leading-relaxed">
+                  Sitio responsivo con catálogo de servicios, cotizaciones y notificaciones automáticas.
                 </p>
 
-                <!-- Tags de Tecnologías Utilizadas -->
                 <div class="pt-2 flex flex-wrap gap-1.5">
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">TypeScript</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">React</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">Tailwind CSS</span>
-                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-800 text-slate-300 border border-slate-700">REST API</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">TypeScript</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">React</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e293b] text-[#94a3b8] border border-[#1e293b]">Tailwind</span>
                 </div>
               </div>
             </div>
 
-            <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-800/80 mt-4 text-xs font-mono">
-              <a href="#placeholder-demo-3" onclick="showToast('Enlace de portal web: Reemplaza con la dirección URL real.')" class="inline-flex items-center gap-1.5 text-brand-400 hover:text-brand-300 transition-colors">
+            <div class="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 flex items-center justify-between border-t border-[#1e293b]/80 mt-4 text-[11px] font-mono">
+              <a href="#" class="inline-flex items-center gap-1.5 text-[#0ea5e9] hover:text-[#38bdf8] transition-colors">
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                <span>Vista Previa</span>
+                <span>Vista previa</span>
               </a>
-              <a href="#placeholder-github-3" onclick="showToast('Repositorio: Reemplaza con el enlace a GitHub.')" class="inline-flex items-center gap-1 text-slate-400 hover:text-white transition-colors">
+              <a href="#" class="inline-flex items-center gap-1 text-[#64748b] hover:text-white transition-colors">
                 <i data-lucide="github" class="w-3.5 h-3.5"></i>
                 <span>Código</span>
               </a>
@@ -727,132 +1191,128 @@
       </div>
     </section>
 
-    <!-- ==================== STACK TÉCNICO / HABILIDADES ==================== -->
-    <section id="skills" class="py-20 border-b border-tech-border/50 relative bg-tech-surface/40">
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="py-14 sm:py-20 border-b border-[#1e293b]/50 relative">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#0ea5e9] bg-[#0ea5e9]/10 px-3 py-1 rounded-full border border-[#0ea5e9]/20">
             <i data-lucide="terminal" class="w-3 h-3"></i>
             <span>Arsenal Tecnológico</span>
           </div>
           <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             Herramientas & Entornos
           </h2>
-          <p class="text-slate-400 text-sm sm:text-base">
-            Tecnologías y plataformas con las que desarrollo soluciones de software y mantengo infraestructuras en producción.
+          <p class="text-[#94a3b8] text-sm sm:text-base">
+            Tecnologías y plataformas con las que desarrollo soluciones y mantengo infraestructuras.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
           
-          <!-- Bloque 1: Infraestructura & Servidores -->
-          <div class="p-6 rounded-2xl bg-tech-card border border-tech-border space-y-4">
+          <div class="p-4 sm:p-6 rounded-2xl bg-[#111827] border border-[#1e293b] space-y-4">
             <div class="flex items-center gap-3">
-              <div class="p-2.5 rounded-xl bg-sky-500/10 text-brand-400 border border-sky-500/20">
-                <i data-lucide="server" class="w-5 h-5"></i>
+              <div class="p-2 sm:p-2.5 rounded-xl bg-sky-500/10 text-[#38bdf8] border border-sky-500/20">
+                <i data-lucide="server" class="w-4 h-4 sm:w-5 sm:h-5"></i>
               </div>
-              <h3 class="font-bold text-white text-base">Infraestructura & OS</h3>
+              <h3 class="font-bold text-white text-sm sm:text-base">Infraestructura</h3>
             </div>
-            <div class="space-y-2 text-xs font-mono text-slate-300">
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>Linux (Ubuntu / Debian)</span>
-                <span class="text-brand-400">Avanzado</span>
+            <div class="space-y-2 text-[11px] sm:text-xs font-mono text-[#cbd5e1]">
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>Linux</span>
+                <span class="text-[#0ea5e9]">Avanzado</span>
               </div>
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>Windows Server / Active Dir.</span>
-                <span class="text-brand-400">Intermedio</span>
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>Windows Server</span>
+                <span class="text-[#0ea5e9]">Intermedio</span>
               </div>
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>Virtualización (VMware/Proxmox)</span>
-                <span class="text-brand-400">Intermedio</span>
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>Virtualización</span>
+                <span class="text-[#0ea5e9]">Intermedio</span>
               </div>
               <div class="flex justify-between items-center py-1">
-                <span>Docker Containers</span>
-                <span class="text-slate-400">Práctico</span>
+                <span>Docker</span>
+                <span class="text-[#64748b]">Práctico</span>
               </div>
             </div>
           </div>
 
-          <!-- Bloque 2: Redes & Soporte TI -->
-          <div class="p-6 rounded-2xl bg-tech-card border border-tech-border space-y-4">
+          <div class="p-4 sm:p-6 rounded-2xl bg-[#111827] border border-[#1e293b] space-y-4">
             <div class="flex items-center gap-3">
-              <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <i data-lucide="router" class="w-5 h-5"></i>
+              <div class="p-2 sm:p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <i data-lucide="router" class="w-4 h-4 sm:w-5 sm:h-5"></i>
               </div>
-              <h3 class="font-bold text-white text-base">Redes & Hardware</h3>
+              <h3 class="font-bold text-white text-sm sm:text-base">Redes & Hardware</h3>
             </div>
-            <div class="space-y-2 text-xs font-mono text-slate-300">
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>VLANs, DNS, DHCP, NAT</span>
+            <div class="space-y-2 text-[11px] sm:text-xs font-mono text-[#cbd5e1]">
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>VLANs, DNS, DHCP</span>
                 <span class="text-emerald-400">Avanzado</span>
               </div>
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>Mesa de Ayuda (Soporte L1/L2)</span>
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>Soporte L1/L2</span>
                 <span class="text-emerald-400">Avanzado</span>
               </div>
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>Cableado Estructurado & Patch</span>
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>Cableado</span>
                 <span class="text-emerald-400">Intermedio</span>
               </div>
               <div class="flex justify-between items-center py-1">
-                <span>Respaldos & Recuperación TI</span>
+                <span>Backups</span>
                 <span class="text-emerald-400">Avanzado</span>
               </div>
             </div>
           </div>
 
-          <!-- Bloque 3: Desarrollo Frontend & Backend -->
-          <div class="p-6 rounded-2xl bg-tech-card border border-tech-border space-y-4">
+          <div class="p-4 sm:p-6 rounded-2xl bg-[#111827] border border-[#1e293b] space-y-4">
             <div class="flex items-center gap-3">
-              <div class="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                <i data-lucide="code" class="w-5 h-5"></i>
+              <div class="p-2 sm:p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                <i data-lucide="code" class="w-4 h-4 sm:w-5 sm:h-5"></i>
               </div>
-              <h3 class="font-bold text-white text-base">Desarrollo Web</h3>
+              <h3 class="font-bold text-white text-sm sm:text-base">Desarrollo</h3>
             </div>
-            <div class="space-y-2 text-xs font-mono text-slate-300">
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>JavaScript / TypeScript</span>
+            <div class="space-y-2 text-[11px] sm:text-xs font-mono text-[#cbd5e1]">
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>JS / TypeScript</span>
                 <span class="text-indigo-400">Avanzado</span>
               </div>
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>React & Tailwind CSS</span>
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>React / Tailwind</span>
                 <span class="text-indigo-400">Avanzado</span>
               </div>
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>Node.js / Express</span>
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>Node.js</span>
                 <span class="text-indigo-400">Intermedio</span>
               </div>
               <div class="flex justify-between items-center py-1">
-                <span>Python / APIs REST</span>
-                <span class="text-slate-400">Intermedio</span>
+                <span>Python</span>
+                <span class="text-[#64748b]">Intermedio</span>
               </div>
             </div>
           </div>
 
-          <!-- Bloque 4: Bases de Datos & Gestión -->
-          <div class="p-6 rounded-2xl bg-tech-card border border-tech-border space-y-4">
+          <div class="p-4 sm:p-6 rounded-2xl bg-[#111827] border border-[#1e293b] space-y-4">
             <div class="flex items-center gap-3">
-              <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                <i data-lucide="database" class="w-5 h-5"></i>
+              <div class="p-2 sm:p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                <i data-lucide="database" class="w-4 h-4 sm:w-5 sm:h-5"></i>
               </div>
-              <h3 class="font-bold text-white text-base">Datos & Metodologías</h3>
+              <h3 class="font-bold text-white text-sm sm:text-base">Datos & Metodologías</h3>
             </div>
-            <div class="space-y-2 text-xs font-mono text-slate-300">
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
+            <div class="space-y-2 text-[11px] sm:text-xs font-mono text-[#cbd5e1]">
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
                 <span>PostgreSQL / MySQL</span>
                 <span class="text-amber-400">Avanzado</span>
               </div>
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>Git / GitHub Workflows</span>
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>Git / GitHub</span>
                 <span class="text-amber-400">Avanzado</span>
               </div>
-              <div class="flex justify-between items-center py-1 border-b border-slate-800">
-                <span>Metodologías Ágiles (Scrum)</span>
+              <div class="flex justify-between items-center py-1 border-b border-[#1e293b]">
+                <span>Scrum</span>
                 <span class="text-amber-400">Práctico</span>
               </div>
               <div class="flex justify-between items-center py-1">
-                <span>Documentación Técnica</span>
+                <span>Documentación</span>
                 <span class="text-amber-400">Avanzado</span>
               </div>
             </div>
@@ -863,197 +1323,186 @@
       </div>
     </section>
 
-    <!-- ==================== CONTACTO & ENLACES ==================== -->
-    <section id="contact" class="py-20 relative">
+    <!-- ===== CONTACTO ===== -->
+    <section id="contact" class="py-14 sm:py-20 relative">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#0ea5e9] bg-[#0ea5e9]/10 px-3 py-1 rounded-full border border-[#0ea5e9]/20">
             <i data-lucide="send" class="w-3 h-3"></i>
             <span>Conectemos</span>
           </div>
           <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             Ponte en Contacto
           </h2>
-          <p class="text-slate-400 text-sm sm:text-base">
-            ¿Tienes una vacante en tu equipo de TI, un proyecto de infraestructura o necesitas desarrollar una aplicación web? Conversemos.
+          <p class="text-[#94a3b8] text-sm sm:text-base">
+            ¿Tienes una vacante, un proyecto o una consulta? Conversemos.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
           
-          <!-- Columna Información Directa y Redes -->
-          <div class="lg:col-span-5 space-y-6">
+          <div class="lg:col-span-5 space-y-5 sm:space-y-6">
             
-            <div class="bg-tech-card p-6 sm:p-7 rounded-2xl border border-tech-border space-y-6 shadow-xl">
+            <div class="bg-[#111827] p-5 sm:p-6 lg:p-7 rounded-2xl border border-[#1e293b] space-y-5 sm:space-y-6 shadow-xl">
               <div>
-                <h3 class="text-lg font-bold text-white">Canales Directos</h3>
-                <p class="text-xs text-slate-400 mt-1">Responderé a la brevedad posible dentro de la jornada laboral.</p>
+                <h3 class="text-base sm:text-lg font-bold text-white">Canales Directos</h3>
+                <p class="text-[11px] sm:text-xs text-[#64748b] mt-1">Responderé a la brevedad posible.</p>
               </div>
 
-              <div class="space-y-4">
+              <div class="space-y-3">
                 
-                <!-- Correo Electrónico Placeholder -->
-                <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                  <div class="p-2 rounded-lg bg-brand-500/10 text-brand-400">
-                    <i data-lucide="mail" class="w-5 h-5"></i>
+                <!-- CORREO -->
+                <div class="flex items-start gap-3 p-3 rounded-xl bg-[#0d1320]/80 border border-[#1e293b]">
+                  <div class="p-2 rounded-lg bg-[#0ea5e9]/10 text-[#0ea5e9] flex-shrink-0">
+                    <i data-lucide="mail" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                   </div>
-                  <div class="flex-grow">
-                    <p class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Correo Electrónico</p>
-                    <!-- PLACEHOLDER: Reemplazar 'tu-correo@dominio.cl' por tu dirección real de correo -->
-                    <a href="mailto:marcelo.soto.ojeda@example.com" class="text-sm font-medium text-white hover:text-brand-400 transition-colors break-all">
-                      marcelo.soto.ojeda@example.com
+                  <div class="flex-grow min-w-0">
+                    <p class="text-[10px] font-mono text-[#64748b] uppercase tracking-wider">Correo</p>
+                    <a href="mailto:ing.marcelosoto@gmail.com" class="text-xs sm:text-sm font-medium text-white hover:text-[#0ea5e9] transition-colors break-all">
+                      ing.marcelosoto@gmail.com
                     </a>
-                    <span class="block text-[10px] text-amber-400 font-mono mt-0.5">*(Placeholder: inserte su correo real)*</span>
                   </div>
                 </div>
 
-                <!-- Ubicación Profesional -->
-                <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                  <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
-                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                <!-- UBICACIÓN -->
+                <div class="flex items-start gap-3 p-3 rounded-xl bg-[#0d1320]/80 border border-[#1e293b]">
+                  <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 flex-shrink-0">
+                    <i data-lucide="map-pin" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                   </div>
                   <div>
-                    <p class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Ubicación</p>
-                    <p class="text-sm font-medium text-white">Chile</p>
-                    <span class="text-xs text-slate-400">Disponible para modalidad Remota, Híbrida o Presencial</span>
+                    <p class="text-[10px] font-mono text-[#64748b] uppercase tracking-wider">Ubicación</p>
+                    <p class="text-xs sm:text-sm font-medium text-white">Chile</p>
+                    <span class="text-[11px] text-[#64748b]">Remoto, híbrido o presencial</span>
                   </div>
                 </div>
 
-                <!-- Titulación Institucional -->
-                <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                  <div class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
-                    <i data-lucide="award" class="w-5 h-5"></i>
+                <!-- TELÉFONO / WHATSAPP -->
+                <div class="flex items-start gap-3 p-3 rounded-xl bg-[#0d1320]/80 border border-[#1e293b] hover:border-[#25d366]/40 transition-all group">
+                  <div class="p-2 rounded-lg bg-[#25d366]/10 text-[#25d366] flex-shrink-0">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
                   </div>
-                  <div>
-                    <p class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Acreditación</p>
-                    <p class="text-sm font-medium text-white">INACAP (Egresado 2023)</p>
-                    <span class="text-xs text-slate-400">Ingeniería en Informática</span>
+                  <div class="flex-grow min-w-0">
+                    <p class="text-[10px] font-mono text-[#64748b] uppercase tracking-wider">Teléfono / WhatsApp</p>
+                    <a href="https://wa.me/56985078857?text=Hola%20Marcelo%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="text-xs sm:text-sm font-medium text-white hover:text-[#25d366] transition-colors break-all flex items-center gap-1.5">
+                      +56 9 8507 8857
+                      <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7M7 7h10v10"/>
+                      </svg>
+                    </a>
+                    <span class="text-[11px] text-[#64748b]">Respuesta rápida por WhatsApp</span>
                   </div>
                 </div>
 
               </div>
 
-              <!-- Enlaces a Perfiles Sociales -->
-              <div class="pt-4 border-t border-slate-800 space-y-3">
-                <p class="text-xs font-mono uppercase tracking-wider text-slate-400">Perfiles Profesionales</p>
-                <div class="flex flex-col gap-2.5">
-                  
-                  <!-- PLACEHOLDER: Reemplazar el href de LinkedIn por tu URL real -->
-                  <a 
-                    href="https://linkedin.com/in/placeholder-marcelo-soto" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 hover:border-brand-500/50 hover:bg-slate-700/60 transition-all text-xs font-medium text-slate-200 group"
-                  >
-                    <span class="flex items-center gap-2.5">
-                      <i data-lucide="linkedin" class="w-4 h-4 text-sky-400"></i>
-                      <span>LinkedIn / Perfil Profesional</span>
-                    </span>
-                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 group-hover:text-brand-400 transition-colors"></i>
-                  </a>
+              <div class="pt-4 border-t border-[#1e293b] space-y-2">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-[#64748b]">Perfiles</p>
+                
+                <!-- LinkedIn con SVG inline -->
+                <a href="https://www.linkedin.com/in/marcelo-ivan-soto-ojeda-855b90198" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl bg-[#1e293b]/80 border border-[#1e293b]/80 hover:border-[#0a66c2]/50 hover:bg-[#1e293b] transition-all text-xs font-medium text-[#cbd5e1] group min-h-[48px]">
+                  <span class="flex items-center gap-2.5">
+                    <svg class="w-4 h-4 text-[#0a66c2]" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                  </span>
+                  <svg class="w-4 h-4 text-[#64748b] group-hover:text-[#0ea5e9] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M7 7h10v10"/>
+                  </svg>
+                </a>
 
-                  <!-- PLACEHOLDER: Reemplazar el href de GitHub por tu usuario real -->
-                  <a 
-                    href="https://github.com/placeholder-marcelo-soto" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 hover:border-brand-500/50 hover:bg-slate-700/60 transition-all text-xs font-medium text-slate-200 group"
-                  >
-                    <span class="flex items-center gap-2.5">
-                      <i data-lucide="github" class="w-4 h-4 text-slate-200"></i>
-                      <span>GitHub / Repositorios de Código</span>
-                    </span>
-                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 group-hover:text-brand-400 transition-colors"></i>
-                  </a>
+                <!-- GitHub con SVG inline -->
+                <a href="https://github.com/Ethixiodo/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl bg-[#1e293b]/80 border border-[#1e293b]/80 hover:border-[#0ea5e9]/50 hover:bg-[#1e293b] transition-all text-xs font-medium text-[#cbd5e1] group min-h-[48px]">
+                  <span class="flex items-center gap-2.5">
+                    <svg class="w-4 h-4 text-[#cbd5e1]" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                    <span>GitHub</span>
+                  </span>
+                  <svg class="w-4 h-4 text-[#64748b] group-hover:text-[#0ea5e9] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M7 7h10v10"/>
+                  </svg>
+                </a>
 
-                </div>
+                <!-- Instagram con SVG inline -->
+                <a href="https://www.instagram.com/themarcelosoto/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl bg-[#1e293b]/80 border border-[#1e293b]/80 hover:border-[#e4405f]/50 hover:bg-[#1e293b] transition-all text-xs font-medium text-[#cbd5e1] group min-h-[48px]">
+                  <span class="flex items-center gap-2.5">
+                    <svg class="w-4 h-4 text-[#e4405f]" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                    </svg>
+                    <span>Instagram</span>
+                  </span>
+                  <svg class="w-4 h-4 text-[#64748b] group-hover:text-[#0ea5e9] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M7 7h10v10"/>
+                  </svg>
+                </a>
+
               </div>
 
             </div>
 
           </div>
 
-          <!-- Columna Formulario de Contacto Directo -->
           <div class="lg:col-span-7">
-            <div class="bg-tech-card p-6 sm:p-8 rounded-2xl border border-tech-border shadow-2xl relative">
+            <div class="bg-[#111827] p-5 sm:p-6 lg:p-8 rounded-2xl border border-[#1e293b] shadow-2xl">
               
-              <div class="mb-6">
-                <h3 class="text-xl font-bold text-white">Enviar Mensaje Directo</h3>
-                <p class="text-xs text-slate-400 mt-1">Completa el formulario para enviar una propuesta, consulta o solicitud técnica.</p>
+              <div class="mb-5 sm:mb-6">
+                <h3 class="text-lg sm:text-xl font-bold text-white">Enviar Mensaje Directo</h3>
+                <p class="text-[11px] sm:text-xs text-[#64748b] mt-1">Completa el formulario y recibiré tu mensaje directamente en mi correo.</p>
               </div>
 
-              <!-- Formulario Interactivo con simulación y placeholders -->
+              <!-- ========== FORMULARIO CON WEB3FORMS ========== -->
               <form id="contact-form" class="space-y-4">
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Access Key de Web3Forms - REEMPLAZA ESTO CON TU KEY -->
+                <input type="hidden" name="access_key" value="4e01b087-0d58-4258-a68b-f6c3a478a71d" />
+                <input type="hidden" name="subject" value="Nuevo mensaje desde tu portafolio" />
+                <input type="hidden" name="from_name" value="Portafolio Marcelo Soto" />
+                <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div class="space-y-1.5">
-                    <label for="contact-name" class="block text-xs font-mono font-medium text-slate-300">Tu Nombre / Empresa *</label>
-                    <input 
-                      type="text" 
-                      id="contact-name" 
-                      name="name" 
-                      required 
-                      placeholder="Ej. Camila Morales" 
-                      class="w-full px-3.5 py-2.5 rounded-xl bg-tech-dark border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all"
-                    />
+                    <label for="contact-name" class="block text-[10px] sm:text-xs font-mono font-medium text-[#94a3b8]">Tu Nombre / Empresa *</label>
+                    <input type="text" id="contact-name" name="name" required placeholder="Ej. Camila Morales" class="form-input" />
                   </div>
 
                   <div class="space-y-1.5">
-                    <label for="contact-email" class="block text-xs font-mono font-medium text-slate-300">Tu Correo Electrónico *</label>
-                    <input 
-                      type="email" 
-                      id="contact-email" 
-                      name="email" 
-                      required 
-                      placeholder="correo@empresa.com" 
-                      class="w-full px-3.5 py-2.5 rounded-xl bg-tech-dark border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all"
-                    />
+                    <label for="contact-email" class="block text-[10px] sm:text-xs font-mono font-medium text-[#94a3b8]">Tu Correo Electrónico *</label>
+                    <input type="email" id="contact-email" name="email" required placeholder="correo@empresa.com" class="form-input" />
                   </div>
                 </div>
 
                 <div class="space-y-1.5">
-                  <label for="contact-subject" class="block text-xs font-mono font-medium text-slate-300">Asunto o Tipo de Requerimiento *</label>
-                  <select 
-                    id="contact-subject" 
-                    name="subject" 
-                    required 
-                    class="w-full px-3.5 py-2.5 rounded-xl bg-tech-dark border border-slate-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all"
-                  >
+                  <label for="contact-subject" class="block text-[10px] sm:text-xs font-mono font-medium text-[#94a3b8]">Asunto *</label>
+                  <select id="contact-subject" name="tipo" required class="form-input">
                     <option value="" disabled selected>Selecciona una opción</option>
-                    <option value="oportunidad-laboral">Oportunidad Laboral / Contratación</option>
-                    <option value="soporte-infraestructura">Soporte TI / Infraestructura de Servidores</option>
-                    <option value="desarrollo-web">Desarrollo de Sitio o Aplicación Web</option>
-                    <option value="consultoria-ti">Consultoría Informática / Redes</option>
-                    <option value="otro">Otro Motivo</option>
+                    <option value="Oportunidad laboral">Oportunidad Laboral / Contratación</option>
+                    <option value="Soporte TI">Soporte TI / Infraestructura</option>
+                    <option value="Desarrollo web">Desarrollo Web / Aplicaciones</option>
+                    <option value="Consultoría">Consultoría Informática / Redes</option>
+                    <option value="Otro">Otro Motivo</option>
                   </select>
                 </div>
 
                 <div class="space-y-1.5">
-                  <label for="contact-message" class="block text-xs font-mono font-medium text-slate-300">Mensaje Detallado *</label>
-                  <textarea 
-                    id="contact-message" 
-                    name="message" 
-                    rows="5" 
-                    required 
-                    placeholder="Describe los detalles de tu consulta, alcance del proyecto o propuesta laboral..." 
-                    class="w-full px-3.5 py-2.5 rounded-xl bg-tech-dark border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all resize-y"
-                  ></textarea>
+                  <label for="contact-message" class="block text-[10px] sm:text-xs font-mono font-medium text-[#94a3b8]">Mensaje *</label>
+                  <textarea id="contact-message" name="message" rows="4" required placeholder="Describe los detalles de tu consulta, alcance del proyecto o propuesta..." class="form-input resize-y"></textarea>
                 </div>
 
                 <div class="pt-2">
-                  <button 
-                    type="submit" 
-                    id="submit-btn" 
-                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-semibold text-sm bg-brand-500 text-white hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 shadow-lg shadow-brand-500/25 transition-all duration-200 disabled:opacity-50"
-                  >
+                  <button type="submit" id="submit-btn" class="btn-primary w-full sm:w-auto text-sm px-6 py-3">
                     <i data-lucide="send" class="w-4 h-4"></i>
                     <span>Enviar Mensaje</span>
                   </button>
                 </div>
 
-                <!-- Mensaje de estado tras envío -->
-                <div id="form-status" class="hidden mt-4 p-4 rounded-xl text-xs font-mono"></div>
+                <div id="form-status" class="hidden mt-4 p-3 rounded-xl text-[11px] font-mono"></div>
 
               </form>
 
@@ -1067,65 +1516,64 @@
 
   </main>
 
-  <!-- ==================== PIE DE PÁGINA (FOOTER) ==================== -->
-  <footer class="border-t border-tech-border/80 bg-tech-dark relative z-10 py-10 text-xs text-slate-400">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-[#1e293b]/80 bg-[#090d16] relative z-10 py-6 sm:py-10 text-xs text-[#64748b]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
       
       <div class="flex items-center gap-3">
-        <div class="w-7 h-7 rounded-md bg-brand-500/20 text-brand-400 flex items-center justify-center font-mono font-bold text-xs border border-brand-500/30">
+        <div class="w-7 h-7 rounded-md bg-[#0ea5e9]/20 text-[#0ea5e9] flex items-center justify-center font-mono font-bold text-xs border border-[#0ea5e9]/30">
           MS
         </div>
-        <div>
-          <p class="font-semibold text-slate-200 text-sm">Marcelo Iván Soto Ojeda</p>
-          <p class="text-[11px] text-slate-400">Ingeniero en Informática • INACAP 2023</p>
+        <div class="text-center md:text-left">
+          <p class="font-semibold text-[#cbd5e1] text-sm">Marcelo Iván Soto Ojeda</p>
+          <p class="text-[10px] sm:text-[11px] text-[#64748b]">Ingeniero en Informática • INACAP 2022</p>
         </div>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-6 font-mono text-xs">
-        <a href="#hero" class="hover:text-brand-400 transition-colors">Inicio</a>
-        <a href="#about" class="hover:text-brand-400 transition-colors">Sobre Mí</a>
-        <a href="#services" class="hover:text-brand-400 transition-colors">Especialidades</a>
-        <a href="#projects" class="hover:text-brand-400 transition-colors">Proyectos</a>
-        <a href="#contact" class="hover:text-brand-400 transition-colors">Contacto</a>
+      <div class="flex flex-wrap justify-center gap-4 sm:gap-6 font-mono text-[11px]">
+        <a href="#hero" class="hover:text-[#0ea5e9] transition-colors py-1">Inicio</a>
+        <a href="#about" class="hover:text-[#0ea5e9] transition-colors py-1">Sobre Mí</a>
+        <a href="#services" class="hover:text-[#0ea5e9] transition-colors py-1">Especialidades</a>
+        <a href="#certifications" class="hover:text-[#0ea5e9] transition-colors py-1">Certificaciones</a>
+        <a href="#projects" class="hover:text-[#0ea5e9] transition-colors py-1">Proyectos</a>
+        <a href="#contact" class="hover:text-[#0ea5e9] transition-colors py-1">Contacto</a>
       </div>
 
-      <div class="text-center md:text-right font-mono text-[11px] text-slate-400">
-        <p>© 2024 - 2026 Marcelo Soto Ojeda. Todos los derechos reservados.</p>
-        <p class="text-slate-400 mt-0.5">Diseño optimizado • Mobile First • Dark Mode</p>
-      </div>
+      <p class="text-[10px] sm:text-[11px] text-center md:text-right">© 2024 - 2026 Marcelo Soto</p>
 
     </div>
   </footer>
 
-  <!-- Toast flotante para notificaciones interactivas -->
-  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 max-w-sm px-4 py-3 rounded-xl bg-slate-800 border border-brand-500/50 text-white shadow-2xl flex items-center gap-3 text-xs font-mono">
-    <i data-lucide="info" class="w-4 h-4 text-brand-400 shrink-0"></i>
-    <span id="toast-text">Mensaje</span>
+  <!-- ===== TOAST ===== -->
+  <div id="toast" class="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 toast">
+    <div class="flex items-center gap-3">
+      <svg class="w-4 h-4 text-[#0ea5e9] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 16v-4"></path>
+        <path d="M12 8h.01"></path>
+      </svg>
+      <span id="toast-text" class="text-xs">Mensaje</span>
+    </div>
   </div>
 
-  <!-- ==================== JAVASCRIPT BÁSICO INTEGRADO ==================== -->
+  <!-- ===== SCRIPT ===== -->
   <script>
-    // Inicializar iconos Lucide
     document.addEventListener("DOMContentLoaded", () => {
-      lucide.createIcons();
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
     });
 
-    // Control de Menú Móvil
+    // ===== MENÚ MÓVIL =====
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
     if (menuBtn && mobileMenu) {
       menuBtn.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.contains('hidden');
-        if (isHidden) {
-          mobileMenu.classList.remove('hidden');
-        } else {
-          mobileMenu.classList.add('hidden');
-        }
+        mobileMenu.classList.toggle('hidden');
       });
 
-      // Cerrar menú al hacer clic en cualquier enlace
       mobileNavLinks.forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
@@ -1133,7 +1581,7 @@
       });
     }
 
-    // Función utilitaria para Toast de notificación
+    // ===== TOAST =====
     function showToast(message) {
       const toast = document.getElementById('toast');
       const toastText = document.getElementById('toast-text');
@@ -1148,60 +1596,132 @@
       }
     }
 
-    // Interacción del Formulario de Contacto
+    // ===== FORMULARIO CON WEB3FORMS =====
     const contactForm = document.getElementById('contact-form');
     const submitBtn = document.getElementById('submit-btn');
     const formStatus = document.getElementById('form-status');
 
     if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        const formData = new FormData(contactForm);
         const originalBtnHtml = submitBtn.innerHTML;
+        
+        // Validación básica
+        const accessKey = formData.get('access_key');
+        if (!accessKey || accessKey === 'TU_ACCESS_KEY_AQUI') {
+          formStatus.className = 'mt-4 p-3 rounded-xl text-[11px] font-mono bg-amber-950/60 border border-amber-500/40 text-amber-300 block';
+          formStatus.innerHTML = `
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                <path d="M12 9v4"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+              <div>
+                <strong>Configuración pendiente</strong>
+                <p class="mt-1 text-[#cbd5e1]">Debes registrarte en <a href="https://web3forms.com" target="_blank" class="underline text-[#0ea5e9]">web3forms.com</a> con tu correo <strong>ing.marcelosoto@gmail.com</strong> y reemplazar "TU_ACCESS_KEY_AQUI" con tu Access Key.</p>
+              </div>
+            </div>
+          `;
+          showToast('⚠️ Falta configurar Web3Forms');
+          return;
+        }
+        
         submitBtn.disabled = true;
         submitBtn.innerHTML = `
-          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <svg class="animate-spin h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          <span>Enviando mensaje...</span>
+          <span>Enviando...</span>
         `;
 
-        // Simulación de envío de formulario para demostración
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnHtml;
-          contactForm.reset();
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+          });
 
-          if (formStatus) {
-            formStatus.className = 'mt-4 p-4 rounded-xl text-xs font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 block';
+          const data = await response.json();
+
+          if (data.success) {
+            formStatus.className = 'mt-4 p-3 rounded-xl text-[11px] font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 block';
             formStatus.innerHTML = `
               <div class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                <strong class="font-bold">¡Mensaje simulado enviado con éxito!</strong>
+                <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <strong>¡Mensaje enviado con éxito!</strong>
               </div>
-              <p class="mt-1 text-slate-300">Gracias por escribir. Para conectar un endpoint real (ej. Formspree, EmailJS o backend propio), enlaza el atributo action de tu formulario.</p>
+              <p class="mt-1 text-[#cbd5e1]">Gracias por contactarme. Te responderé a la brevedad.</p>
             `;
+            contactForm.reset();
+            showToast('¡Mensaje enviado con éxito!');
+          } else {
+            throw new Error(data.message || 'Error al enviar');
           }
-
-          showToast("¡Mensaje enviado con éxito! (Modo demostración)");
-        }, 1200);
+        } catch (error) {
+          console.error('Error:', error);
+          formStatus.className = 'mt-4 p-3 rounded-xl text-[11px] font-mono bg-rose-950/60 border border-rose-500/40 text-rose-300 block';
+          formStatus.innerHTML = `
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-rose-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              <strong>Error al enviar el mensaje</strong>
+            </div>
+            <p class="mt-1 text-[#cbd5e1]">Intenta nuevamente o escríbeme directamente a <a href="mailto:ing.marcelosoto@gmail.com" class="underline text-[#0ea5e9]">ing.marcelosoto@gmail.com</a></p>
+          `;
+          showToast('Error al enviar. Intenta nuevamente.');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
       });
     }
 
-    // Efecto de sombra y blur en navbar al scrollear
+    // ===== SCROLL HEADER =====
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       if (header) {
         if (window.scrollY > 30) {
-          header.classList.add('shadow-lg', 'shadow-black/50', 'bg-tech-dark/95');
-          header.classList.remove('bg-tech-dark/85');
+          header.classList.add('shadow-lg', 'shadow-black/50');
         } else {
-          header.classList.remove('shadow-lg', 'shadow-black/50', 'bg-tech-dark/95');
-          header.classList.add('bg-tech-dark/85');
+          header.classList.remove('shadow-lg', 'shadow-black/50');
         }
       }
     });
+
+    // ===== ESTADÍSTICAS ANIMADAS =====
+    function animateStats() {
+      const statNumbers = document.querySelectorAll('.stat-number');
+      statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-count'));
+        const duration = 2000;
+        const stepTime = 16;
+        let current = 0;
+        const increment = target / (duration / stepTime);
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  stat.textContent = target;
+                  clearInterval(timer);
+                } else {
+                  stat.textContent = Math.floor(current);
+                }
+              }, stepTime);
+              observer.unobserve(stat);
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        observer.observe(stat);
+      });
+    }
+
+    setTimeout(animateStats, 500);
   </script>
 </body>
 </html>
